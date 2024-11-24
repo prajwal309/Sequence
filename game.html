@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sequence Game Grid</title>
+    
     <style>
         #title {
             text-align: center;
@@ -13,28 +13,62 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         #grid {
             display: grid;
             position: absolute;
-            grid-template-columns: repeat(10, 40px);
+            grid-template-columns: repeat(10, 10%);
             grid-gap: 5px;
-            top: 10%;
-            left: 25%;
-            margin: 20px auto;
-            width: 550px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
         }
 
-        #playersCard {
+        #grid {
+            display: grid;
             position: absolute;
-            top: 75%;
-            left: 25%;
-            width: 200px;
-            height: 200px;
-            padding: 10px;
-            background-color: #f8f8f8;
-            border: 1px solid #278b93;
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            grid-template-columns: repeat(10, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+       
+        #grid7Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(7, 10%);
+            grid-gap: 5px;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #grid6Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(6, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+        #grid5Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(5, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+
+
+        .h2 {
+            text-align: center;
         }
         .card {
             width: 35px;
@@ -53,25 +87,84 @@
             .card:hover {
                 transform: scale(1.1);
         }
-        .heart {
-            color: red;
-        }
+       
         .sequence {
             background-color: #ffcc00;
             font-weight: bold;
         }
+
+        
+        
+        .player1card {
+            /* Inherit styles from .card */
+            position: absolute;
+            top: 100px;
+            left: 25%;
+            width: 35px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.01s;
+        }
+        .player1card:hover {
+            transform: scale(1.1);
+        }
+
+        .cardBack{
+            width: 85px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.01s;
+        }
+        
     </style>
 </head>
+
+
+
 <body>
 
-<div id="title">
-    <h1>Sequence Game Grid</h1>
-</div>
+
 <div id="grid"></div>
 
-<div id="playersCard">
-    <h2>Your Cards</h2>
-    <div id="player" style="display: flex; gap: 10px;"></div>
+
+
+<div id="arrow" style="position: absolute; top: 50%; left: 50%; width: 50px; height: 50px; pointer-events: none;">
+    <img src="images/arrow-down.png" alt=">> " style="width: 100%; height: 100%;">
+</div>
+
+
+
+
+
+<div id="cardBacks">
+    <img src="images/cardback.png" alt="Card Back" style="width: 35px; height: 50px;">
+    <script>
+        
+    </script>
+</div>
+
+
+
+
+
+<div id="playerDetail">
+    <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
 </div>
 
 
@@ -88,7 +181,7 @@
             deck.push(value + suit);
         }
     }
-    let combinedDeck = shuffle([...deck, ...deck]);
+    let shuffledDeck = shuffle([...deck, ...deck]);
 
     // Duplicate the deck to fill 100 slots (some cards will repeat as in Sequence)
     let defaultGridCards = [
@@ -115,7 +208,6 @@
     }
 
 
-    let shuffledCards = shuffle(defaultGridCards.flat());
     let gridCards = defaultGridCards.flat().reverse();
 
 
@@ -140,24 +232,104 @@
         
         gridContainer.appendChild(cardDiv);
     }
+    
+    let numPlayers = 4;
+    console.log(numPlayers);
 
-    //give seven random cards to the player
-    const playerContainer = document.getElementById('player');
-    for (let i = 0; i < 7; i++) {
-        const playerCardDiv = document.createElement('div');
-        playerCardDiv.className = 'playerCard';
-        const playerCard = shuffledCards.pop();
-        if (playerCard.includes('♥')) {
-            playerCardDiv.style.color = 'red';
-        }
-        else if (playerCard.includes('♦')) {
-            playerCardDiv.style.color = 'red';
-        }
-        playerCardDiv.innerText = playerCard;
-        playerContainer.appendChild(playerCardDiv);
+    let numCards = 6; // Default number of cards for 4 players
+    let colors = [];
+    if (numPlayers == 2) {
+        numCards = 7;
+        colors = ['#ff8ba0', '#a0ff8b'];
     }
-   
-    //display the player's cards
+    else if (numPlayers == 4) {    
+        numCards = 6;
+        colors = ['#ff8ba0', 'blue'];
+    }
+    else if (numPlayers == 6) {
+        numCards = 5;
+        colors = ['#ff8ba0', 'blue', 'green'];
+    }
+
+    let playerCards = [];
+    for (let i = 0; i < numPlayers; i++) {
+        playerCards.push(shuffledDeck.splice(0, numCards));
+    }
+    
+    let currentPlayer = 0;
+    console.log(playerCards);
+
+
+    const player1Container = document.getElementById('cardPlayer');
+    
+    playerCards[0].forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'player1card';
+        if (card.includes('♥')) {
+            cardDiv.style.color = 'red';
+        } else if (card.includes('♦')) {
+            cardDiv.style.color = 'red';
+        }
+        cardDiv.innerText = card;
+        player1Container.appendChild(cardDiv);
+    });
+
+    //display the virtually the card backs of the player
+    const cardBacksContainer = document.getElementById('cardBacks');
+    for (let i = 0; i < 7; i++) {
+            const img = document.createElement('img');
+            img.src = 'images/cardback.png';
+            img.alt = 'Card Back';
+            img.style.width = '35px';
+            img.style.height = '50px';
+            cardBacksContainer.appendChild(img);
+        }
+    
+    // Highlight matching cards in the grid for Player 1
+    const gridCardsElements = document.querySelectorAll('#grid .card'); // Select all grid cards
+    const player1Cards = playerCards[0]; // Player 1's cards
+
+    player1Cards.forEach(playerCard => {
+        gridCardsElements.forEach(gridCard => {
+            if (gridCard.innerText === playerCard) {
+                gridCard.style.border = '5px solid black'; // Highlight with a green border
+                gridCard.style.cursor = 'pointer'; // Make the cursor indicate a clickable card
+
+            // Add a click event listener to handle the card being clicked
+            gridCard.addEventListener('click', () => {
+            gridCard.style.backgroundColor = colors[0]; // Change background when clicked
+                
+            //change the turn
+            currentPlayer = (currentPlayer + 1) % numPlayers;
+
+            //remove the card from the player's hand and replace with a new card
+
+            });
+        }
+    });
+
+    cardPlayer.addEventListener('click', () => {
+        currentPlayer = (currentPlayer + 1) % numPlayers;
+        console.log(currentPlayer);
+    });
+
+    //check if the card makes a sequence
+    function checkSequence(card1, card2) {
+        let card1Value = card1.slice(0, -1);
+        let card2Value = card2.slice(0, -1);
+        let card1Suit = card1.slice(-1);
+        let card2Suit = card2.slice(-1);
+        let card1Index = allValues.indexOf(card1Value);
+        let card2Index = allValues.indexOf(card2Value);
+        if (card1Suit === card2Suit) {
+            if (Math.abs(card1Index - card2Index) === 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+});
+        
    
 </script>
 

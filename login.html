@@ -1,93 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sequence Game Grid</title>
-    <style>
-        #grid {
-            display: grid;
-            grid-template-columns: repeat(10, 50px);
-            grid-gap: 5px;
-            margin: 20px auto;
-            width: 550px;
-        }
-        .card {
-            width: 50px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            background-color: #f8f8f8;
-            border: 1px solid #333;
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        .heart {
-            color: red;
-        }
-        .sequence {
-            background-color: #ffcc00;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Card Game Character</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .character-creation-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+    }
+
+    .character-creation-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"], select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .character-stats {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .character-stats h3 {
+      margin: 10px 0;
+    }
+
+    .character-stats p {
+      margin: 5px 0;
+    }
+  </style>
 </head>
+
+
 <body>
+  <div class="character-creation-container">
+    <h2>Create Your Character</h2>
+    <input type="text" id="character-name" placeholder="Character Name" required>
+    <input type="text" id="character-quote" placeholder="Character Quote" required>
+    <select id="play-type">
+      <option value="Offensive">Offensive</option>
+      <option value="Defensive">Defensive</option>
+      <option value="Tactical">Tactical</option>
+      <option value="MCMC">MCMC</option>
+    </select>
+    <button id="create-character">Create Character</button>
 
-<h1>Sequence Game Grid</h1>
-<div id="grid"></div>
+    <div class="character-stats" id="character-stats" style="display: none;">
+      <h3>Character Card</h3>
+      <p><strong>Name:</strong> <span id="display-name"></span></p>
+      <p><strong>Quote:</strong> "<span id="display-quote"></span>"</p>
+      <p><strong>Play Type:</strong> <span id="display-play-type"></span></p>
+      <p><strong>Stats:</strong></p>
+      <ul id="stats-list">
+        <!-- Stats will be dynamically added here -->
+      </ul>
+    </div>
+  </div>
 
-<script>
-    // Define card suits and values (excluding Jacks)
-    const suits = ['♠', '♥', '♦', '♣'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Q', 'K', 'A'];
+  <script>
+    const createCharacterButton = document.getElementById("create-character");
+    const characterStatsDiv = document.getElementById("character-stats");
 
-    // Generate the deck without Jacks
-    let deck = [];
-    for (let suit of suits) {
-        for (let value of values) {
-            deck.push(value + suit);
-        }
+    createCharacterButton.addEventListener("click", () => {
+      const name = document.getElementById("character-name").value;
+      const quote = document.getElementById("character-quote").value;
+      const playType = document.getElementById("play-type").value;
+
+      if (!name || !quote) {
+        alert("Please fill in all the fields!");
+        return;
+      }
+
+      document.getElementById("display-name").textContent = name;
+      document.getElementById("display-quote").textContent = quote;
+      document.getElementById("display-play-type").textContent = playType;
+
+      // Generate random stats based on play type
+      const stats = generateStats(playType);
+      const statsList = document.getElementById("stats-list");
+      statsList.innerHTML = ""; // Clear previous stats
+      for (const [key, value] of Object.entries(stats)) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${key}: ${value}`;
+        statsList.appendChild(listItem);
+      }
+
+      characterStatsDiv.style.display = "block";
+    });
+
+    function generateStats(playType) {
+      switch (playType) {
+        case "Offensive":
+          return { Attack: randomStat(80, 100), Defense: randomStat(40, 60), Strategy: randomStat(50, 70) };
+        case "Defensive":
+          return { Attack: randomStat(40, 60), Defense: randomStat(80, 100), Strategy: randomStat(50, 70) };
+        case "Tactical":
+          return { Attack: randomStat(60, 80), Defense: randomStat(60, 80), Strategy: randomStat(80, 100) };
+        case "MCMC":
+          return { Attack: randomStat(50, 70), Defense: randomStat(50, 70), Strategy: randomStat(90, 100) };
+        default:
+          return { Attack: 50, Defense: 50, Strategy: 50 };
+      }
     }
 
-    // Duplicate the deck to fill 100 slots (some cards will repeat as in Sequence)
-    let gridCards = [...deck, ...deck];
-    
-    // Shuffle the grid cards
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+    function randomStat(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-    gridCards = shuffle(gridCards);
-
-    // Create the 10x10 grid
-    const gridContainer = document.getElementById('grid');
-    for (let i = 0; i < 100; i++) {
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'card';
-        
-        // Add "Sequence" cards to the corners
-        if (i === 0 || i === 9 || i === 90 || i === 99) {
-            cardDiv.classList.add('sequence');
-            cardDiv.innerText = "Sequence";
-        } else {
-            // Add cards for other cells
-            const card = gridCards.pop();
-            if (card.includes('♥')) {
-                cardDiv.classList.add('heart');
-            }
-            cardDiv.innerText = card;
-        }
-        
-        gridContainer.appendChild(cardDiv);
-    }
-</script>
-
+  </script>
 </body>
 </html>

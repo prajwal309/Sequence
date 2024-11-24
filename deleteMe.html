@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .player-card {
+      display: flex;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      overflow: hidden;
+    }
+
+    .player-image {
+      flex: 1;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .player-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .player-stats {
+      flex: 1;
+      padding: 20px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .player-stats h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .player-stats ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .player-stats ul li {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="player-card">
+    <div class="player-image">
+      <img src="https://via.placeholder.com/150" alt="Player Image">
+    </div>
+    <div class="player-stats">
+      <h2>Player Name</h2>
+      <ul>
+        <li>Speed: 85</li>
+        <li>Strength: 90</li>
+        <li>Agility: 88</li>
+        <li>Intelligence: 92</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Example JavaScript to dynamically update stats
+    const playerStats = {
+      name: "John Doe",
+      speed: 85,
+      strength: 90,
+      agility: 88,
+      intelligence: 92
+    };
+
+    document.querySelector('.player-stats h2').textContent = playerStats.name;
+
+    const statsList = document.querySelector('.player-stats ul');
+    statsList.innerHTML = `
+      <li>Speed: ${playerStats.speed}</li>
+      <li>Strength: ${playerStats.strength}</li>
+      <li>Agility: ${playerStats.agility}</li>
+      <li>Intelligence: ${playerStats.intelligence}</li>
+    `;
+  </script>
+</body>
+</html>

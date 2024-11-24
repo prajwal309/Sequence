@@ -1,6 +1,23 @@
-1. Allow players to join a table.
-2. Give five cards in random to the player.
-3. Allow two players to team up.
-4. Allow randomly to select the players.
-5. Use the table properly.
-6. Host the game in the internet.x
+Game Developer:
+Prajwal Niraula
+
+
+Start chat app. Use websocket.
+
+Multiplayer games orchestrate
+Libraries --- javascript 
+data from one player has go to another player.
+Synchronized 
+Established pattern in how to do it.
+
+
+Things to do:
+---> Put the arrow at the right place.
+---> Make sure the cards are replaced. 
+---> Make sure two players can play with one another. How do you do this in in the same browser i.e. combine two players.
+---> Check this for two plauyers
+
+
+Long term projects:
+---> Deploying in gridlox games.com
+---> Write about this online.
