@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Game Grid</title>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(10, 50px);
+            grid-gap: 5px;
+            margin: 20px auto;
+            width: 550px;
+        }
+        .card {
+            width: 50px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .heart {
+            color: red;
+        }
+        .sequence {
+            background-color: #ffcc00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Sequence Game Grid</h1>
+<div id="grid"></div>
+
+<script>
+    // Define card suits and values (excluding Jacks)
+    const suits = ['♠', '♥', '♦', '♣'];
+    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Q', 'K', 'A'];
+
+    // Generate the deck without Jacks
+    let deck = [];
+    for (let suit of suits) {
+        for (let value of values) {
+            deck.push(value + suit);
+        }
+    }
+
+    // Duplicate the deck to fill 100 slots (some cards will repeat as in Sequence)
+    let gridCards = [...deck, ...deck];
+    
+    // Shuffle the grid cards
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    gridCards = shuffle(gridCards);
+
+    // Create the 10x10 grid
+    const gridContainer = document.getElementById('grid');
+    for (let i = 0; i < 100; i++) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        
+        // Add "Sequence" cards to the corners
+        if (i === 0 || i === 9 || i === 90 || i === 99) {
+            cardDiv.classList.add('sequence');
+            cardDiv.innerText = "Sequence";
+        } else {
+            // Add cards for other cells
+            const card = gridCards.pop();
+            if (card.includes('♥')) {
+                cardDiv.classList.add('heart');
+            }
+            cardDiv.innerText = card;
+        }
+        
+        gridContainer.appendChild(cardDiv);
+    }
+</script>
+
+</body>
+</html>
