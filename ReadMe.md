@@ -2,6 +2,11 @@ Game Developer:
 Prajwal Niraula
 
 
+In order to first deploy,
+
+npm init -y
+npm install express socket.io
+
 Start chat app. Use websocket.
 
 Multiplayer games orchestrate

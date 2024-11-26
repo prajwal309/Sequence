@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        #title {
+            text-align: center;
+            font-size: 10px;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #grid {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(10, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+        #grid {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(10, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+       
+        #grid7Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(7, 10%);
+            grid-gap: 5px;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #grid6Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(6, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+        #grid5Cards {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(5, 10%);
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+        }
+
+
+
+        .h2 {
+            text-align: center;
+        }
+        .card {
+            width: 35px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+                transition: transform 0.2s;
+            }
+            .card:hover {
+                transform: scale(1.1);
+        }
+       
+        .sequence {
+            background-color: #ffcc00;
+            font-weight: bold;
+        }
+
+        
+        
+        .player1card {
+            /* Inherit styles from .card */
+            position: absolute;
+            top: 100px;
+            left: 25%;
+            width: 35px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.01s;
+        }
+        .player1card:hover {
+            transform: scale(1.1);
+        }
+
+        .cardBack{
+            width: 85px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #333;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.01s;
+        }
+        
+    </style>
+</head>
+
+
+
+<body>
+
+
+<div id="grid"></div>
+
+
+
+<div id="arrow" style="position: absolute; top: 50%; left: 50%; width: 50px; height: 50px; pointer-events: none;">
+    <img src="images/arrow-down.png" alt=">> " style="width: 100%; height: 100%;">
+</div>
+
+
+
+
+
+<div id="cardBacks">
+    <img src="images/cardback.png" alt="Card Back" style="width: 35px; height: 50px;">
+    <script>
+        
+    </script>
+</div>
+
+
+
+
+
+<div id="playerDetail">
+    <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
+</div>
+
+<script src="scripts/game.js"></script>
+
+</body>
+</html>
