@@ -27,10 +27,7 @@
         .navbar a:hover {
             text-decoration: underline;
         }
-        .container {
-            padding: 20px;
-            text-align: center;
-        }
+        
         .table {
             display: inline-block;
             border: 2px solid #333;
@@ -114,15 +111,6 @@
     <h1>Welcome to the Lobby</h1>
     <p>Select a table to join the game:</p>
     <div id="tables"></div>
-
-    <div id="chat">
-        <h2>IRL Chat</h2>
-        <div id="users"></div>
-        <div id="messages"></div>
-        <input id="messageInput" placeholder="Type a message..." autocomplete="off">
-    </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="chat.js"></script>
 </div>
 
 <!-- Rules Modal -->
@@ -181,7 +169,7 @@
 
 <script>
     // Generate tables dynamically
-    const tableCount = 8; // Number of tables
+    const tableCount = 3; // Number of tables
     const tablesContainer = document.getElementById("tables");
 
     for (let i = 1; i <= tableCount; i++) {
@@ -189,13 +177,26 @@
         tableDiv.className = "table";
         tableDiv.innerHTML = `
             <h3>Table ${i}</h3>
-            <p>Click to Join</p>
+            <div class="form-group">
+                <label for="tableName${i}">Table Name:</label>
+                <input type="text" id="tableName${i}" placeholder="Enter table name">
+            </div>
+            <div class="form-group">
+                <label for="numPlayers${i}">Number of Players:</label>
+                <select id="numPlayers${i}">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <button id="joinTable${i}" class="join-btn">Join Table</button>
         `;
-        tableDiv.addEventListener("click", () => {
-            alert(`You have joined Table ${i}`);
-            // Redirect or update player status for this table
-        });
+        
+        
+        //list the tables that are already created
         tablesContainer.appendChild(tableDiv);
+
     }
 
     // Modal functionality

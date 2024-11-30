@@ -16,7 +16,7 @@
 
         #grid {
             display: grid;
-            position: absolute;
+
             grid-template-columns: repeat(10, 10%);
             grid-gap: 5px;
             top: 40%;
@@ -24,15 +24,8 @@
             transform: translate(-25%, -25%);
         }
 
-        #grid {
-            display: grid;
-            position: absolute;
-            grid-template-columns: repeat(10, 10%);
-            grid-gap: 5px;
-            top: 40%;
-            left: 50%;
-            transform: translate(-25%, -25%);
-        }
+        
+        
 
        
         #grid7Cards {
@@ -65,14 +58,17 @@
             transform: translate(-25%, -25%);
         }
 
-
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
 
         .h2 {
             text-align: center;
         }
         .card {
-            width: 35px;
-            height: 50px;
+            width: 2.5%px;
+            height: 3%px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -140,19 +136,15 @@
 <body>
 
 
+<!-- create a main container here and divide the page into different sections. -->
+
+<!--
+
+
 <div id="grid"></div>
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="chat.js"></script>
-
 <div id="arrow" style="position: absolute; top: 50%; left: 50%; width: 50px; height: 50px; pointer-events: none;">
     <img src="images/arrow-down.png" alt=">> " style="width: 100%; height: 100%;">
 </div>
-
-
-
-
-
 <div id="cardBacks">
     <img src="images/cardback.png" alt="Card Back" style="width: 35px; height: 50px;">
     <script>
@@ -168,7 +160,36 @@
     <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
 </div>
 
-<script src="scripts/game.js"></script>
 
+-->
+
+<div class="container"></div>
+    <div id="gameDetails" style="position: absolute; top: 0; width: 100%; height: 10%; text-align: center; background-color: #F7883F;">
+        <h2>Table</h2>
+    </div>
+    
+    <div id="chat" style="position: absolute; top: 10%; left: 0; width: 15%; height: 70%; overflow-y: auto; background-color: yellow;">
+        <h2>IRL Chat</h2>
+        <div id="users"></div>
+        <div id="messages"></div>
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" style="margin: 0.5%;">
+    </div>
+    
+    
+    <div id="grid" style="position: absolute; top: 30%; left: 30%; width: 60%; height: 70%;"></div>
+    
+    <div id="gameInfo" style="position: absolute; top: 10%; right: 0; width: 20%; height: 70%; overflow-y: auto;">
+        <h2 style="text-align: center;">Game Logs</h2>
+        <p>>>> Player 1 has joined the game.</p>
+        <div id="gameLogs"></div>
+    </div>
+    
+    <div id="playerStats" style="position: absolute; bottom: 0; width: 100%; height: 20%; text-align: center; background-color: #65cadf);">
+        <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
+    </div>
+</div>
+<script src="scripts/game.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>

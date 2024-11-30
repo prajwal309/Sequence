@@ -1,19 +1,17 @@
 Game Developer:
 Prajwal Niraula
+MIT
+
+
+To do:
+---> Write function to check if a position is winning or not.
+---> Write function to check if a position is winning or not.
 
 
 In order to first deploy,
-
 npm init -y
 npm install express socket.io
 
-Start chat app. Use websocket.
-
-Multiplayer games orchestrate
-Libraries --- javascript 
-data from one player has go to another player.
-Synchronized 
-Established pattern in how to do it.
 
 
 Things to do:
