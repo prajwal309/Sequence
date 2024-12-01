@@ -4,9 +4,11 @@ MIT
 
 
 ## Deploying in a server
->>> npm init -y
->>> npm install express socket.io
->>> node server.js
+```
+npm init -y
+npm install express socket.io
+node server.js
+```
 
 To do:
 - Create grid display for cards. [Done]
