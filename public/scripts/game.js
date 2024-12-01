@@ -74,11 +74,15 @@ if (numPlayers == 2) {
 }
 else if (numPlayers == 3) {
     numCards = 7;
-    colors = ['rgb(255, 139, 160)', 'rgb(160, 255, 139)'];
+    colors = ['rgb(255, 139, 160)', 'rgb(160, 255, 139)', 'rgb(139, 160, 255)'];
 }
 else if (numPlayers == 4) {
     numCards = 6;
     colors = ['rgb(255, 139, 160)', 'rgb(160, 255, 139)'];
+}
+else if (numPlayers == 6) {
+    numCards = 6;
+    colors = ['rgb(255, 139, 160)', 'rgb(160, 255, 139)', 'rgb(139, 160, 255)'];
 }
 
 let playerCards = [];
@@ -87,11 +91,10 @@ for (let i = 0; i < numPlayers; i++) {
 }
 
 let currentPlayer = 0;
-
-
-
 const player1Container = document.getElementById('cardPlayer');
 
+
+//This text is doing nothing.
 playerCards[0].forEach(card => {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'player1card';
@@ -101,14 +104,17 @@ playerCards[0].forEach(card => {
         cardDiv.style.color = 'red';
     }
     cardDiv.innerText = card;
+    console.log(card);
     player1Container.appendChild(cardDiv);
 });
 
+
 // Highlight matching cards in the grid for Player 1
 const gridCardsElements = document.querySelectorAll('#grid .card'); // Select all grid cards
-const player1Cards = playerCards[0]; // Player 1's cards
+const player1Cards = playerCards; // Player 1's cards
+console.log(player1Cards);
 
-player1Cards.forEach(playerCard => {
+player1Cards[0].forEach(playerCard => {
     gridCardsElements.forEach(gridCard => {
         if (gridCard.innerText === playerCard) {
             gridCard.style.border = '5px solid black'; // Highlight with a green border
@@ -123,10 +129,7 @@ player1Cards.forEach(playerCard => {
             gridCard.style.backgroundColor = colors[0]; // Change background when clicked
         } 
         //change the turn
-        currentPlayer = (currentPlayer + 1) % numPlayers;
-
-        //remove the card from the player's hand and replace with a new card
-
+        currentPlayer = (currentPlayer+1)%numPlayers;
         });
     }
 });

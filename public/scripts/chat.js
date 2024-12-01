@@ -6,8 +6,10 @@ socket.emit('join', username);
 
 // Display connected users
 socket.on('updateUsers', (users) => {
-    const usersDiv = document.getElementById('users');
-    usersDiv.innerHTML = `<strong>Users:</strong> ${users.join(', ')}`;
+    const usersDiv = document.getElementById('gameLogs');
+    usersDiv.innerHTML = `<strong>${users.join(', ')}</strong> joined the game.`;
+    const playerStat = document.getElementById('playerName');
+    playerStat.innerHTML = `Player : <strong>${users.join(', ')}</strong>`;
 });
 
 // Display messages

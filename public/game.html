@@ -35,6 +35,7 @@
         }
 
         .card {
+            position:relative;
             width: 2.5%px;
             height: 3%px;
             display: flex;
@@ -60,11 +61,10 @@
 
         
         .player1card {
-            /* Inherit styles from .card */
-            position: absolute;
-            top: 50%;
-            left: 25%;
-            width: 135px;
+            position: relative;
+            top: 5%;
+            left: 15%;
+            width: 35px; 
             height: 50px;
             display: flex;
             align-items: center;
@@ -74,8 +74,11 @@
             border: 1px solid #333;
             border-radius: 4px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
             transition: transform 0.01s;
+        }
+
+        .player1card:hover {
+            transform: scale(1.1);
         }
 
         .grid-cards {
@@ -87,22 +90,9 @@
             transform: translate(-50%, -50%);
         }
 
-        .grid-7-cards {
-            grid-template-columns: repeat(7, 10%);
-        }
-
-        .grid-6-cards {
-            grid-template-columns: repeat(6, 10%);
-        }
-
-        .grid-5-cards {
-            grid-template-columns: repeat(5, 10%);
-        }
+       
+    
         
-        .player1card:hover {
-            transform: scale(1.1);
-        }
-
         
     </style>
 </head>
@@ -120,7 +110,7 @@
         <h2>Chat</h2>
         <div id="users"></div>
         <div id="messages"></div>
-        <input id="messageInput" placeholder="Type a message..." autocomplete="off" style="width: 94%; position: absolute; left: 2.5%; top: 96%;">
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" style="width: 90%; position: absolute; left: 2.5%; top: 96%;">
     </div>
     
     
@@ -132,8 +122,8 @@
     </div>
     
     <div id="playerStats" style="position: absolute; top: 85%; width: 95%; height: 15%; text-align: center; background-color: #65cadf; margin: 0%;">
-        <p> Player Name</p>
-        <div id="cardPlayer"></div>
+        <div id="playerName" style="margin: 10px;"></div>
+        <div id="cardPlayer" style="display: grid;  margin-left:25%;left:50%;grid-template-columns: repeat(7,10%);"></div>
     </div>
 </div>
 <script src="scripts/game.js"></script>
