@@ -1,16 +1,16 @@
 ## Developer:
-Prajwal Niraula
-MIT
-
+Prajwal Niraula  
+MIT  
+email: pniraula@mit.edu
 
 ## Deploying in a server
-```
+```bash
 npm init -y
 npm install express socket.io
 node server.js
 ```
 
-To do:
+## To do:
 - Create grid display for cards. [Done]
 - Game log says Player1 joined. [Done]
 - Add Gridlox games logo for now. [Done]
@@ -20,7 +20,6 @@ To do:
 - Write function to check if a position is winning or not. Started in testFunction.js
 - Need a handler for Jacks.
 - Make it playable with two players.
-
 
 ## Functionality:
 - Different number of players
