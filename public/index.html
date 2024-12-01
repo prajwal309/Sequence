@@ -108,32 +108,89 @@
 </div>
 
 <div class="container">
-    <h1>Welcome to the Lobby</h1>
-    <p>Select a table to join the game:</p>
+    <h1 style="margin: 10px;">Welcome to the Lobby</h1>
+   
     <div id="tables"></div>
 </div>
+
+
+<!-- Create a table option using a form -->
+<div style="position:absolute; left:5%; width: 25%; border: 3px solid black; margin: 10px;">
+    <div style=" margin: 10px;">
+        <h2>Create Table</h2>
+        <div class="form-group">
+            <label for="tableName">Table Name:</label>
+            <input type="text" id="createTableName" placeholder="Enter table name">
+        </div>
+        <div class="form-group">
+            <label for="numPlayers">Number of Players:</label>
+            <select id="createNumPlayers">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <button id="createTableBtn" class="join-btn">Create Table</button>
+    </div>
+</div>
+
+<!-- List all the tables that have been created -->
+<div style="position:absolute; right:5%; width: 25%; border: 3px solid black; margin: 10px;">
+    <div style=" margin: 10px; text-align: center;">
+    <h2>All Tables are here.</h2>
+    <div id="allTables"></div>
+    </div>
+</div>
+
+<script>
+    const createTableBtn = document.getElementById("createTableBtn");
+    const allTablesDiv = document.getElementById("allTables");
+
+    createTableBtn.addEventListener("click", () => {
+        const tableName = document.getElementById("createTableName").value;
+        const numPlayers = document.getElementById("createNumPlayers").value;
+
+        if (tableName && numPlayers) {
+            const tableDiv = document.createElement("div");
+            tableDiv.className = "table";
+            tableDiv.innerHTML = `
+                <h3>${tableName}</h3>
+                <p>Number of Players: ${numPlayers}</p>
+            `;
+            allTablesDiv.appendChild(tableDiv);
+        } else {
+            alert("Please enter a table name.");
+        }
+    });
+</script>
+<script>
+    document.getElementById("createTableBtn").addEventListener("click", () => {
+        window.location.href = "game.html";
+    });
+</script>
 
 <!-- Rules Modal -->
 <div id="rulesModal" class="modal">
     <div class="modal-content">
         <h2>Team Play</h2>
-    <p>For 2 teams: Players must be evenly divided into two teams. Team members must alternate seats with opponents around the game board.</p>
-    <p>For 3 teams: Players must be evenly divided into three teams. Team members must alternate seats with alternate seats every third player around the game board.</p>
-    <p>In team play, coaching is strictly forbidden. If a teammate says anything that alerts a fellow teammate to the fact that they are about to do something they shouldn't, every member of that team must forfeit one card of their choice from their hand and place it on the discard pile.</p>
+    <p style="text-align: left;">For 2 teams: Players must be evenly divided into two teams. Team members must alternate seats with opponents around the game board.</p>
+    <p style="text-align: left;">For 3 teams: Players must be evenly divided into three teams. Team members must alternate seats with alternate seats every third player around the game board.</p>
+    <p style="text-align: left;">In team play, coaching is strictly forbidden. If a teammate says anything that alerts a fellow teammate to the fact that they are about to do something they shouldn't, every member of that team must forfeit one card of their choice from their hand and place it on the discard pile.</p>
 
     <h2>Winning the Game</h2>
-    <p>Play continues until one player or team scores the required number of SEQUENCES, at which point that player or team wins the game. If required to complete two SEQUENCES to win, players may only use one space from their first SEQUENCE as part of their second.</p>
+    <p style="text-align: left;">Play continues until one player or team scores the required number of SEQUENCES, at which point that player or team wins the game. If required to complete two SEQUENCES to win, players may only use one space from their first SEQUENCE as part of their second.</p>
 
     <h2>Object of the Game</h2>
-    <p>Be the first player (or team) to score the appropriate number of SEQUENCES, one or two depending on the number of players.</p>
+    <p style="text-align: left;">Be the first player (or team) to score the appropriate number of SEQUENCES, one or two depending on the number of players.</p>
     <ul>
         <li style="text-align: left;">2 Players or 2 Teams: 2 SEQUENCES</li>
         <li style="text-align: left;">3 Players or 3 Teams: 1 SEQUENCE</li>
     </ul>
-    <p><strong>SEQUENCE:</strong> A connected series of five of the same color marker chip in a straight line, either up and down, across, or diagonally on the game board.</p>
+    <p style="text-align: left;"><strong>SEQUENCE:</strong> A connected series of five of the same color marker chip in a straight line, either up and down, across, or diagonally on the game board.</p>
 
     <h2>The Jacks</h2>
-    <p>There are eight Jacks in the card deck:</p>
+    <p style="text-align: left;">There are eight Jacks in the card deck:</p>
     <ul>
         <li style="text-align: left;">The four two-eyed Jacks are wild cards. To play a two-eyed Jack, players add it to their discard pile and place one of their color marker chips on any open space on the game board.</li>
         <li style="text-align: left;"> The four one-eyed Jacks are anti-wild. To play a one-eyed Jack, players add it to their opponent's marker chips (that is not already a part of a completed SEQUENCE) from the game board.</li>
@@ -169,7 +226,7 @@
 
 <script>
     // Generate tables dynamically
-    const tableCount = 3; // Number of tables
+    const tableCount = 0; // Number of tables
     const tablesContainer = document.getElementById("tables");
 
     for (let i = 1; i <= tableCount; i++) {

@@ -14,9 +14,8 @@
             transform: translate(-50%, -50%);
         }
 
-        #grid {
+        #grid{
             display: grid;
-
             grid-template-columns: repeat(10, 10%);
             grid-gap: 5px;
             top: 40%;
@@ -24,39 +23,7 @@
             transform: translate(-25%, -25%);
         }
 
-        
-        
-
-       
-        #grid7Cards {
-            display: grid;
-            position: absolute;
-            grid-template-columns: repeat(7, 10%);
-            grid-gap: 5px;
-            top: 80%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        #grid6Cards {
-            display: grid;
-            position: absolute;
-            grid-template-columns: repeat(6, 10%);
-            grid-gap: 5px;
-            top: 40%;
-            left: 50%;
-            transform: translate(-25%, -25%);
-        }
-
-        #grid5Cards {
-            display: grid;
-            position: absolute;
-            grid-template-columns: repeat(5, 10%);
-            grid-gap: 5px;
-            top: 40%;
-            left: 50%;
-            transform: translate(-25%, -25%);
-        }
+    
 
         .container {
             padding: 20px;
@@ -66,6 +33,7 @@
         .h2 {
             text-align: center;
         }
+
         .card {
             width: 2.5%px;
             height: 3%px;
@@ -80,7 +48,8 @@
             text-align: center;
                 transition: transform 0.2s;
             }
-            .card:hover {
+        
+        .card:hover {
                 transform: scale(1.1);
         }
        
@@ -90,13 +59,12 @@
         }
 
         
-        
         .player1card {
             /* Inherit styles from .card */
             position: absolute;
-            top: 100px;
+            top: 50%;
             left: 25%;
-            width: 35px;
+            width: 135px;
             height: 50px;
             display: flex;
             align-items: center;
@@ -109,24 +77,32 @@
             text-align: center;
             transition: transform 0.01s;
         }
+
+        .grid-cards {
+            display: grid;
+            position: absolute;
+            grid-gap: 5px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .grid-7-cards {
+            grid-template-columns: repeat(7, 10%);
+        }
+
+        .grid-6-cards {
+            grid-template-columns: repeat(6, 10%);
+        }
+
+        .grid-5-cards {
+            grid-template-columns: repeat(5, 10%);
+        }
+        
         .player1card:hover {
             transform: scale(1.1);
         }
 
-        .cardBack{
-            width: 85px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            background-color: #f8f8f8;
-            border: 1px solid #333;
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: transform 0.01s;
-        }
         
     </style>
 </head>
@@ -134,62 +110,34 @@
 
 
 <body>
-
-
-<!-- create a main container here and divide the page into different sections. -->
-
-<!--
-
-
-<div id="grid"></div>
-<div id="arrow" style="position: absolute; top: 50%; left: 50%; width: 50px; height: 50px; pointer-events: none;">
-    <img src="images/arrow-down.png" alt=">> " style="width: 100%; height: 100%;">
-</div>
-<div id="cardBacks">
-    <img src="images/cardback.png" alt="Card Back" style="width: 35px; height: 50px;">
-    <script>
-        
-    </script>
-</div>
-
-
-
-
-
-<div id="playerDetail">
-    <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
-</div>
-
-
--->
-
 <div class="container"></div>
     <div id="gameDetails" style="position: absolute; top: 0; width: 100%; height: 10%; text-align: center; background-color: #F7883F;">
-        <h2>Table</h2>
+        <h2>Table:</h2>
+        <div id="tableName"></div>
     </div>
     
-    <div id="chat" style="position: absolute; top: 10%; left: 0; width: 15%; height: 70%; overflow-y: auto; background-color: yellow;">
-        <h2>IRL Chat</h2>
+    <div id="chat" style="position: absolute; top: 10%; left: 0; width: 15%; height: 70%; margin: 10px; overflow-y: auto; background-color: rgb(247, 247, 83);;">
+        <h2>Chat</h2>
         <div id="users"></div>
         <div id="messages"></div>
-        <input id="messageInput" placeholder="Type a message..." autocomplete="off" style="margin: 0.5%;">
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" style="width: 94%; position: absolute; left: 2.5%; top: 96%;">
     </div>
     
     
-    <div id="grid" style="position: absolute; top: 30%; left: 30%; width: 60%; height: 70%;"></div>
+    <div id="grid" style="position: absolute; top: 30%; left: 30%; width: 60%; height: 70%; margin: 15px;"></div>
     
     <div id="gameInfo" style="position: absolute; top: 10%; right: 0; width: 20%; height: 70%; overflow-y: auto;">
-        <h2 style="text-align: center;">Game Logs</h2>
-        <p>>>> Player 1 has joined the game.</p>
+        <h2 style="text-align: center;">Logs</h2>
         <div id="gameLogs"></div>
     </div>
     
-    <div id="playerStats" style="position: absolute; bottom: 0; width: 100%; height: 20%; text-align: center; background-color: #65cadf);">
-        <div id="cardPlayer" style="display: flex; gap: 10px;"></div>
+    <div id="playerStats" style="position: absolute; top: 85%; width: 95%; height: 15%; text-align: center; background-color: #65cadf; margin: 0%;">
+        <p> Player Name</p>
+        <div id="cardPlayer"></div>
     </div>
 </div>
 <script src="scripts/game.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="chat.js"></script>
+<script src="scripts/chat.js"></script>
 </body>
 </html>
