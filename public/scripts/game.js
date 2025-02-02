@@ -114,47 +114,39 @@ const gridCardsElements = document.querySelectorAll('#grid .card'); // Select al
 const player1Cards = playerCards; // Player 1's cards
 console.log(player1Cards);
 
-player1Cards[0].forEach(playerCard => {
-    gridCardsElements.forEach(gridCard => {
-        if (gridCard.innerText === playerCard) {
-            gridCard.style.border = '5px solid black'; // Highlight with a green border
-            gridCard.style.cursor = 'pointer'; // Make the cursor indicate a clickable card
-            gridCard.style.backgroundColor = "white";
-        // Add a click event listener to handle the card being clicked
-        gridCard.addEventListener('click', () => { 
-        const currentColor = window.getComputedStyle(gridCard).backgroundColor;
-        if (currentColor === colors[0]) {
-            gridCard.style.backgroundColor = 'white'; // Change background back to white
-        } else{
-            gridCard.style.backgroundColor = colors[0]; // Change background when clicked
-        } 
-        //change the turn
-        currentPlayer = (currentPlayer+1)%numPlayers;
-        });
-    }
-});
-
-//cardPlayer.addEventListener('click', () => {
-//    currentPlayer = (currentPlayer + 1) % numPlayers;
-//    console.log("The currentPlayer is:"+currentPlayer);
-//});
-
-//check if the card makes a sequence
-/*
-function checkSequence(card1, card2) {
-    let card1Value = card1.slice(0, -1);
-    let card2Value = card2.slice(0, -1);
-    let card1Suit = card1.slice(-1);
-    let card2Suit = card2.slice(-1);
-    let card1Index = allValues.indexOf(card1Value);
-    let card2Index = allValues.indexOf(card2Value);
-    if (card1Suit === card2Suit) {
-        if (Math.abs(card1Index - card2Index) === 1) {
-            return true;
+    player1Cards[0].forEach(playerCard => {
+        gridCardsElements.forEach(gridCard => {
+            if (gridCard.innerText === playerCard) {
+                gridCard.style.border = '5px solid black'; // Highlight with a green border
+                gridCard.style.cursor = 'pointer'; // Make the cursor indicate a clickable card
+                gridCard.style.backgroundColor = "white";
+            // Add a click event listener to handle the card being clicked
+            gridCard.addEventListener('click', () => { 
+            const currentColor = window.getComputedStyle(gridCard).backgroundColor;
+            if (currentColor === colors[0]) {
+                gridCard.style.backgroundColor = 'white'; // Change background back to white
+            } else{
+                gridCard.style.backgroundColor = colors[0]; // Change background when clicked
+            } 
+            //change the turn
+            currentPlayer = (currentPlayer+1)%numPlayers;
+            });
         }
-    }
-    return false;
-}
-*/
+    });
+
+    cardPlayer.addEventListener('click', () => {
+        currentPlayer = (currentPlayer + 1) % numPlayers;
+        console.log("The currentPlayer is:"+currentPlayer);
+    });
+
+
 });
     
+
+//game only starts once all the players are in.
+
+//Find out whose turn it is.
+
+//check if anyone has won or not.
+
+//play against the computer as an option.
